@@ -13,7 +13,8 @@ DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
-    # Django auth/admin stripped out — this is a stateless API, no DB models needed
+    'django.contrib.contenttypes',  
+    'django.contrib.auth',          
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
@@ -56,6 +57,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],          
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',     
+    ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
     ],
